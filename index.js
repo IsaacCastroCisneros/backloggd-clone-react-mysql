@@ -7,7 +7,7 @@ app.get('/',(req,res)=>
     res.json('qui estoy')
 })
 
-app.listen(4000,()=>
+app.listen(process.env.PORT||3000,()=>
 {
-    console.log('listen on 5000 port')
+    console.log('listen on 3000 port')
 })
