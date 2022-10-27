@@ -1,19 +1,20 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import { PORT } from './config/config.js';
+
+import { signUpRouter } from './routes/sign_up.js';
 
 const app = express();
 
 app.use(express.json())
 app.use(cors())
+
+app.use('/sign_up',signUpRouter);
+
 app.use(express.static('dist'));
 
-app.get('/',(req,res)=>
-{
-    res.json('qui estoy')
-})
-
-if(process.env.NODE_ENV!=='production')
+if(process.env.NODE_ENV==='production')
 {
     app.get('*',(req,res)=>
     {
@@ -21,8 +22,7 @@ if(process.env.NODE_ENV!=='production')
     })
 }
 
-
-app.listen(process.env.PORT||3000,()=>
+app.listen(PORT||3001,()=>
 {
-    console.log('listen on 3000 port')
+    console.log('listen on 3001 port')
 })
